@@ -1,0 +1,30 @@
+body {
+    background: #f5f7fb;
+}
+
+.navbar-brand {
+    letter-spacing: 0.3px;
+}
+
+.card {
+    border-radius: 12px;
+}
+
+.stat-card h3 {
+    font-weight: 700;
+    color: #1f3c88;
+}
+
+.table thead th {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.btn {
+    border-radius: 8px;
+}
+
+.alert {
+    border-radius: 10px;
+}

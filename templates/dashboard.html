@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="mb-0">Dashboard</h2>
+    <a href="{{ url_for('add_book') }}" class="btn btn-primary">+ Add New Book</a>
+</div>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-3">
+        <div class="card stat-card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <h6 class="text-muted">Total Titles</h6>
+                <h3>{{ total_titles }}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card stat-card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <h6 class="text-muted">Total Books</h6>
+                <h3>{{ total_books }}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card stat-card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <h6 class="text-muted">Issued Books</h6>
+                <h3>{{ issued_books }}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card stat-card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <h6 class="text-muted">Available Books</h6>
+                <h3>{{ available_books }}</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card shadow-sm border-0">
+    <div class="card-header bg-white">
+        <h5 class="mb-0">Recent Issue Activity</h5>
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>Book</th>
+                        <th>Borrower</th>
+                        <th>Issue Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in recent_issues %}
+                    <tr>
+                        <td>{{ item.book.title }}</td>
+                        <td>{{ item.borrower_name }}</td>
+                        <td>{{ item.issue_date | format_datetime }}</td>
+                        <td>
+                            {% if item.returned %}
+                            <span class="badge bg-success">Returned</span>
+                            {% else %}
+                            <span class="badge bg-warning text-dark">Issued</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="4" class="text-center py-4 text-muted">No activity found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

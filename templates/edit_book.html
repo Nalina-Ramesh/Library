@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-7">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white">
+                <h4 class="mb-0">Update Book</h4>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <div class="mb-3">
+                        <label class="form-label">Book Title</label>
+                        <input type="text" name="title" class="form-control" value="{{ book.title }}" required />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Author</label>
+                        <input type="text" name="author" class="form-control" value="{{ book.author }}" required />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Category</label>
+                        <input type="text" name="category" class="form-control" value="{{ book.category }}" required />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Total Quantity</label>
+                        <input type="number" name="quantity" class="form-control" min="1" value="{{ book.quantity }}" required />
+                    </div>
+                    <p class="text-muted small">
+                        Available: {{ book.available_quantity }} | Issued: {{ book.quantity - book.available_quantity }}
+                    </p>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-warning" type="submit">Update Book</button>
+                        <a href="{{ url_for('view_books') }}" class="btn btn-outline-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
