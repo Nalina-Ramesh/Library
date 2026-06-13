@@ -232,22 +232,8 @@ This automates build and deployment basics for a mini project demonstration.
 
 ---
 
-## 10) Sample Screenshots Description (For Report)
 
-Include these screenshots in your college submission:
-
-1. **Login Page** – admin login form
-2. **Dashboard** – cards showing total/issued/available books
-3. **Books List** – table with search, edit, delete options
-4. **Add Book Page** – form to add new book
-5. **Issue Book Page** – borrower + book selection
-6. **Issued Books Page** – return action and status badges
-7. **Docker Running** – `docker ps` showing `lms-app`
-8. **Jenkins Build Console** – successful pipeline stages
-
----
-
-## 11) Common Errors and Fixes
+## 10) Common Errors and Fixes
 
 ### Error: `ModuleNotFoundError: No module named 'flask'`
 **Fix:**
@@ -274,50 +260,7 @@ docker run -d --name lms-app -p 5001:5000 library-management-system:latest
 
 ---
 
-## 12) Viva Questions and Answers
-
-1. **What is Flask?**
-   Flask is a lightweight Python web framework used to build web applications quickly.
-
-2. **Why did you use SQLite?**
-   SQLite is serverless and easy for beginners, ideal for mini projects.
-
-3. **What is SQLAlchemy?**
-   SQLAlchemy is an ORM that maps Python classes to database tables.
-
-4. **What is CRUD in this project?**
-   Create, Read, Update, Delete operations on books.
-
-5. **What is Docker?**
-   Docker packages application + dependencies into a container for consistent execution.
-
-6. **Why use Jenkins?**
-   Jenkins automates build and deployment steps after code changes.
-
-7. **What does CI/CD mean?**
-   CI = Continuous Integration, CD = Continuous Delivery/Deployment.
-
-8. **What are pipeline stages in your Jenkinsfile?**
-   Clone repo, install dependencies, build Docker image, run container.
-
-9. **How is security handled in this mini project?**
-   Basic session login is used for demo; production should use hashed passwords and proper auth.
-
-10. **How does issue/return work?**
-    Issuing decreases available quantity; returning increases it and marks record returned.
-
----
-
-## 13) Important Notes for College Submission
-
-- Keep screenshots of running app + Docker + Jenkins.
-- Explain each stage of [`Jenkinsfile`](Jenkinsfile) in viva.
-- Mention that this project demonstrates full DevOps flow at beginner level.
-- For production, improve auth, validation, testing, and deployment strategy.
-
----
-
-## 14) Main Entry Files
+## 11) Main Entry Files
 
 - Flask app: [`app.py`](app.py)
 - Docker config: [`Dockerfile`](Dockerfile)
