@@ -42,6 +42,19 @@
                         <form method="post" action="{{ url_for('delete_book', book_id=book.id) }}" class="d-inline">
                             <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete this book?');">Delete</button>
                         </form>
+                        {% if book.available_quantity == 0 %}
+                        <form method="post" action="{{ url_for('reserve_book', book_id=book.id) }}" class="d-inline">
+                            <input
+                                type="text"
+                                name="user_id"
+                                class="form-control form-control-sm d-inline-block align-middle"
+                                style="width: 150px;"
+                                placeholder="Borrower name"
+                                required
+                            />
+                            <button type="submit" class="btn btn-sm btn-info" onclick="return confirm('Reserve this book?');">Reserve Book</button>
+                        </form>
+                        {% endif %}
                     </td>
                 </tr>
                 {% else %}

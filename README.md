@@ -136,6 +136,43 @@ docker build -t library-management-system:latest .
 docker run -d --name lms-app -p 5000:5000 library-management-system:latest
 ```
 
+### Show Database Tables From Docker
+
+This project uses SQLite. The database file is:
+
+```text
+instance/library.db
+```
+
+The Docker image includes the SQLite CLI, so you can show the actual tables from inside the container:
+
+```bash
+docker exec -it lms-app sqlite3 /app/instance/library.db ".tables"
+```
+
+Show records from each table:
+
+```bash
+docker exec -it lms-app sqlite3 /app/instance/library.db "SELECT * FROM book;"
+docker exec -it lms-app sqlite3 /app/instance/library.db "SELECT * FROM issue_record;"
+docker exec -it lms-app sqlite3 /app/instance/library.db "SELECT * FROM reservation;"
+```
+
+You can also run the app with a browser-based SQLite viewer:
+
+```bash
+docker compose up --build
+```
+
+Then open:
+
+```text
+http://localhost:5000
+http://localhost:8080
+```
+
+Use `http://localhost:8080` to browse the actual SQLite database tables in Docker.
+
 ### Stop and Remove Container
 
 ```bash

@@ -1,0 +1,19 @@
+services:
+  lms-app:
+    build: .
+    container_name: lms-app
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./instance:/app/instance
+
+  sqlite-viewer:
+    image: coleifer/sqlite-web:latest
+    container_name: lms-sqlite-viewer
+    depends_on:
+      - lms-app
+    ports:
+      - "8095:8080"
+    volumes:
+      - ./instance:/data
+    command: ["sqlite_web", "/data/library.db", "--host", "0.0.0.0", "--port", "8080"]

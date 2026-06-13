@@ -1,5 +1,6 @@
 -- Library Management System SQL Schema (SQLite compatible)
 
+DROP TABLE IF EXISTS reservation;
 DROP TABLE IF EXISTS issue_record;
 DROP TABLE IF EXISTS book;
 
@@ -18,10 +19,31 @@ CREATE TABLE issue_record (
     book_id INTEGER NOT NULL,
     borrower_name VARCHAR(120) NOT NULL,
     issue_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    due_date DATETIME,
     returned BOOLEAN DEFAULT 0,
     return_date DATETIME,
+    late_days INTEGER DEFAULT 0,
+    fine_amount DECIMAL(10,2) DEFAULT 0,
+    fine_paid BOOLEAN DEFAULT 0,
     FOREIGN KEY(book_id) REFERENCES book(id)
 );
+
+CREATE TABLE reservation (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id VARCHAR(120) NOT NULL,
+    book_id INTEGER NOT NULL,
+    reservation_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    status VARCHAR(20) NOT NULL DEFAULT 'Pending'
+        CHECK(status IN ('Pending', 'Active', 'Completed', 'Cancelled')),
+    FOREIGN KEY(book_id) REFERENCES book(id)
+);
+
+CREATE INDEX idx_issue_overdue ON issue_record(returned, due_date);
+CREATE INDEX idx_reservation_book_status ON reservation(book_id, status, reservation_date);
+CREATE INDEX idx_reservation_user_status ON reservation(user_id, status);
+CREATE UNIQUE INDEX uq_open_reservation_user_book
+ON reservation(user_id, book_id)
+WHERE status IN ('Pending', 'Active');
 
 -- Sample data
 INSERT INTO book (title, author, category, quantity, available_quantity)

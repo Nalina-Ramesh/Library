@@ -40,6 +40,60 @@
     </div>
 </div>
 
+<div class="row g-3 mb-4">
+    <div class="col-md-3">
+        <div class="card stat-card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <h6 class="text-muted">Total Reservations</h6>
+                <h3>{{ total_reservations }}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card stat-card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <h6 class="text-muted">Pending Reservations</h6>
+                <h3>{{ pending_reservations }}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card stat-card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <h6 class="text-muted">Active Reservations</h6>
+                <h3>{{ active_reservations }}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card stat-card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <h6 class="text-muted">Overdue Books</h6>
+                <h3>{{ overdue_books }}</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-6">
+        <div class="card stat-card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <h6 class="text-muted">Total Fine Collected</h6>
+                <h3>Rs. {{ "%.2f"|format(total_fine_collected) }}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card stat-card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <h6 class="text-muted">Pending Fine Amount</h6>
+                <h3>Rs. {{ "%.2f"|format(pending_fine_amount) }}</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="card shadow-sm border-0">
     <div class="card-header bg-white">
         <h5 class="mb-0">Recent Issue Activity</h5>
